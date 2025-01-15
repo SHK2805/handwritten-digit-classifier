@@ -1,1 +1,1 @@
-# Hand written Digit Classifier
+# Handwritten Digit Classifier
