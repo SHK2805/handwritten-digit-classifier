@@ -1,3 +1,8 @@
 numpy
 torch
 torchvision
+pathlib
+ensure
+python-box
+pyYAML
+types-PyYAML
