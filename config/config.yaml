@@ -26,3 +26,11 @@ data_transformation:
   data_random_state: 42
   data_batch_size: 64
   data_shuffle: True
+
+model_trainer:
+  # paths
+  data_root_dir: 'artifacts/model_trainer'
+  # inputs
+  data_train_file: 'artifacts/data_transformation/train_loader.pth'
+  data_val_file: 'artifacts/data_transformation/val_loader.pth'
+  data_test_file: 'artifacts/data_transformation/test_loader.pth'

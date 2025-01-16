@@ -10,7 +10,7 @@
    2. data_validation
    3. data_transformation
    4. model_training
-2. schema.yaml
+2. schema.yaml (**Not Needed for this project**)
    1. The schema of the data i.e. the column headers and the data types
    2. data_validation
 3. params.yaml

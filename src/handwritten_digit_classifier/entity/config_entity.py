@@ -32,3 +32,12 @@ class DataTransformationConfig:
     data_preprocessed_train_file: str
     data_preprocessed_val_file: str
     data_preprocessed_test_file: str
+
+@dataclass
+class ModelTrainerConfig:
+    # these are the inputs to the model training pipeline
+    data_root_dir: Path
+    data_train_file: Path
+    data_val_file: Path
+    data_test_file: Path
+    adam_learning_rate: float

@@ -1,0 +1,4 @@
+# parameters for the model
+# model_parameters:
+Adam:
+    learning_rate: 0.001
