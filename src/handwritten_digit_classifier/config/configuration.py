@@ -82,7 +82,10 @@ class ConfigurationManager:
             data_random_state=config.data_random_state,
             data_batch_size=config.data_batch_size,
             data_shuffle=config.data_shuffle,
-            transformer=transformer
+            transformer=transformer,
+            data_preprocessed_train_file=config.data_preprocessed_train_file,
+            data_preprocessed_val_file=config.data_preprocessed_val_file,
+            data_preprocessed_test_file=config.data_preprocessed_test_file
         )
 
         return data_transformation_config

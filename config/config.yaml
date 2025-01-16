@@ -15,7 +15,11 @@ data_transformation:
   # paths
   data_root_dir: 'artifacts/data_transformation'
   # inputs
-  data_mnist_dir: 'artifacts/data_ingestion/MNIST/raw'
+  data_mnist_dir: 'artifacts/data_ingestion'
+  # outputs
+  data_preprocessed_train_file: 'artifacts/data_transformation/train_loader.pth'
+  data_preprocessed_val_file: 'artifacts/data_transformation/val_loader.pth'
+  data_preprocessed_test_file: 'artifacts/data_transformation/test_loader.pth'
   # parameters
   data_train_size: 0.8
   data_val_size: 0.2

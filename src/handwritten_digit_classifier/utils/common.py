@@ -1,5 +1,8 @@
 import os
 from pathlib import Path
+from typing import Any
+
+import joblib
 import yaml
 from box import ConfigBox
 from box.exceptions import BoxValueError
@@ -74,3 +77,15 @@ def write_data_to_file(file_path: Path, data: str) -> None:
         file.write(data)
 
     logger.info(f"Data has been written to the file: {file_path}")
+
+def save_bin(file_path: Path, data: Any) -> None:
+    """
+    Save the data to the binary file
+
+    :param file_path: Path to the binary file
+    :param data: Data to save
+    :return: None
+    """
+    joblib.dump(data, file_path)
+
+    logger.info(f"Data has been saved to the binary file: {file_path}")

@@ -29,3 +29,6 @@ class DataTransformationConfig:
     data_batch_size: int
     data_shuffle: bool
     transformer: Transformer
+    data_preprocessed_train_file: str
+    data_preprocessed_val_file: str
+    data_preprocessed_test_file: str
