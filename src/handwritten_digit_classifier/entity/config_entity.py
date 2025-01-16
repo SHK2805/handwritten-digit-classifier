@@ -17,3 +17,15 @@ class DataValidationConfig:
     data_mnist_dir: Path
     STATUS_FILE: str
     mnist_file_count: int
+
+@dataclass
+class DataTransformationConfig:
+    # these are the inputs to the data transformation pipeline
+    data_root_dir: Path
+    data_mnist_dir: Path
+    data_train_size: float
+    data_val_size: float
+    data_random_state: int
+    data_batch_size: int
+    data_shuffle: bool
+    transformer: Transformer

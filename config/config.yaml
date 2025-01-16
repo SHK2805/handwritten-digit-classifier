@@ -10,3 +10,15 @@ data_validation:
   data_mnist_dir: 'artifacts/data_ingestion/MNIST/raw'
   # outputs
   STATUS_FILE: 'artifacts/data_validation/status.txt'
+
+data_transformation:
+  # paths
+  data_root_dir: 'artifacts/data_transformation'
+  # inputs
+  data_mnist_dir: 'artifacts/data_ingestion/MNIST/raw'
+  # parameters
+  data_train_size: 0.8
+  data_val_size: 0.2
+  data_random_state: 42
+  data_batch_size: 64
+  data_shuffle: True

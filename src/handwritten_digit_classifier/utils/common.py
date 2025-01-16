@@ -51,6 +51,16 @@ def create_directories(dirs: list, verbose=True) -> None:
                 logger.info(f"Directory: {my_dir} already exists")
     logger.info(f"Directories have been created")
 
+# function to check if the file exists
+def check_file_exists(file_path: Path) -> bool:
+    """
+    Check if the file exists
+
+    :param file_path: Path to the file
+    :return: True if the file exists, False otherwise
+    """
+    return file_path.exists()
+
 # function to write the data to the file
 def write_data_to_file(file_path: Path, data: str) -> None:
     """
