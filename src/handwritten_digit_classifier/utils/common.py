@@ -50,3 +50,17 @@ def create_directories(dirs: list, verbose=True) -> None:
             if verbose:
                 logger.info(f"Directory: {my_dir} already exists")
     logger.info(f"Directories have been created")
+
+# function to write the data to the file
+def write_data_to_file(file_path: Path, data: str) -> None:
+    """
+    Write the data to the file
+
+    :param file_path: Path to the file
+    :param data: Data to write
+    :return: None
+    """
+    with open(file_path, "w") as file:
+        file.write(data)
+
+    logger.info(f"Data has been written to the file: {file_path}")

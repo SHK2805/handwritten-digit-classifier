@@ -2,3 +2,11 @@ artifacts_root: 'artifacts'
 
 data_ingestion:
   data_root_dir: 'artifacts/data_ingestion'
+
+data_validation:
+  # paths
+  data_root_dir: 'artifacts/data_validation'
+  # inputs
+  data_mnist_dir: 'artifacts/data_ingestion/MNIST/raw'
+  # outputs
+  STATUS_FILE: 'artifacts/data_validation/status.txt'
