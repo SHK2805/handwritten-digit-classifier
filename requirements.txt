@@ -3,7 +3,10 @@ torch
 torchvision
 pathlib
 ensure
+opencv-python
+Flask
+werkzeug
+pyyaml
 python-box
-pyYAML
 types-PyYAML
 opencv-python
