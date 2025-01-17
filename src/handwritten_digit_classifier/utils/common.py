@@ -1,12 +1,13 @@
 import os
 from pathlib import Path
-from typing import Any
+import cv2
 
-import joblib
 import yaml
 from box import ConfigBox
 from box.exceptions import BoxValueError
 from ensure import ensure_annotations
+from torchvision import transforms
+
 from src.handwritten_digit_classifier.logger.logger_config import logger
 
 
@@ -78,14 +79,24 @@ def write_data_to_file(file_path: Path, data: str) -> None:
 
     logger.info(f"Data has been written to the file: {file_path}")
 
-def save_bin(file_path: Path, data: Any) -> None:
+def preprocess_image(image):
     """
-    Save the data to the binary file
+    Preprocess the image
 
-    :param file_path: Path to the binary file
-    :param data: Data to save
-    :return: None
+    :param image: Image to preprocess
+    :return: Preprocessed image
     """
-    joblib.dump(data, file_path)
+    # we need the image to have black background and white digits
+    # if the input image is of white background and black digits use the following code
+    # image = cv2.bitwise_not(image)
+    # convert the image to grayscale
+    transform = transforms.Compose([
+        transforms.ToPILImage(), # convert to PIL image
+        transforms.Grayscale(num_output_channels=1), # convert to grayscale
+        transforms.Resize((28, 28)), # resize the image to 28x28 to match the MNIST dataset
+        transforms.ToTensor(),
+        transforms.Normalize((0.5,), (0.5,)) # Normalize the image data to [-1 , 1] i.e. (1, 1, 28, 28
+    ])
+    preprocessed_image = transform(image)
 
-    logger.info(f"Data has been saved to the binary file: {file_path}")
+    return preprocessed_image

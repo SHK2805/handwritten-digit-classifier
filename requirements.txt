@@ -6,3 +6,4 @@ ensure
 python-box
 pyYAML
 types-PyYAML
+opencv-python
