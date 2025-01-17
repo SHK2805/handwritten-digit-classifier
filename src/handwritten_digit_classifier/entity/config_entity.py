@@ -39,6 +39,12 @@ class ModelTrainerConfig:
     data_root_dir: Path
     data_train_file: Path
     data_val_file: Path
-    data_test_file: Path
     adam_learning_rate: float
+    model_file: Path
+
+@dataclass
+class ModelEvaluationConfig:
+    # these are the inputs to the model evaluation pipeline
+    data_root_dir: Path
+    data_test_file: Path
     model_file: Path

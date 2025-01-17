@@ -33,7 +33,13 @@ model_trainer:
   # inputs
   data_train_file: 'artifacts/data_transformation/train_loader.pth'
   data_val_file: 'artifacts/data_transformation/val_loader.pth'
-  data_test_file: 'artifacts/data_transformation/test_loader.pth'
   # outputs
   model_file: 'artifacts/model_trainer/model.pth'
+
+model_evaluation:
+    # paths
+    data_root_dir: 'artifacts/model_evaluation'
+    # inputs
+    data_test_file: 'artifacts/data_transformation/test_loader.pth'
+    model_file: 'artifacts/model_trainer/model.pth'
 

@@ -3,7 +3,7 @@ from pathlib import Path
 
 from src.handwritten_digit_classifier.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
 from src.handwritten_digit_classifier.entity.config_entity import DataIngestionConfig, DataValidationConfig, \
-    DataTransformationConfig, ModelTrainerConfig
+    DataTransformationConfig, ModelTrainerConfig, ModelEvaluationConfig
 from src.handwritten_digit_classifier.logger.logger_config import logger
 from src.handwritten_digit_classifier.utils.common import read_yaml, create_directories
 from src.handwritten_digit_classifier.utils.transformer import Transformer
@@ -113,11 +113,29 @@ class ConfigurationManager:
             data_root_dir=Path(config.data_root_dir),
             data_train_file=Path(config.data_train_file),
             data_val_file=Path(config.data_val_file),
-            data_test_file=Path(config.data_test_file),
             adam_learning_rate=params.learning_rate,
             model_file=Path(config.model_file)
         )
 
         return model_trainer_config
+
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+        tag: str = f"{self.class_name}::get_model_evaluation_config::"
+        config = self.config.model_evaluation
+        logger.info(f"{tag}Model evaluation configuration obtained from the config file")
+
+        # create the data directory
+        data_dir = config.data_root_dir
+        logger.info(f"{tag}Data directory: {data_dir} obtained from the config file")
+        # create_directories([data_dir])
+        # logger.info(f"{tag}Data directory created: {data_dir}")
+
+        model_evaluation_config: ModelEvaluationConfig = ModelEvaluationConfig(
+            data_root_dir=Path(config.data_root_dir),
+            data_test_file=Path(config.data_test_file),
+            model_file=Path(config.model_file)
+        )
+
+        return model_evaluation_config
 
 
