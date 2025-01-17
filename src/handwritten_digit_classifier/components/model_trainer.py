@@ -51,14 +51,11 @@ class ModelTrainer:
             # train
             for epoch in range(number_of_epochs):
                 train_loss, train_accuracy = self.train_model(model, train_data, criterion, optimizer, device)
-                val_loss, val_accuracy = self.evaluate(model, val_data, criterion, device)
                 logger.info(f"{tag}Epoch: {epoch + 1}, Train Loss: {train_loss:.4f}")
                 logger.info(f"{tag}Train Accuracy: {train_accuracy:.4f}")
-                logger.info(f"{tag}Val Loss: {val_loss:.4f}")
-                logger.info(f"{tag}Val Accuracy: {val_accuracy:.4f}")
 
             # save the model
-            torch.save(model, self.config.data_root_dir)
+            torch.save(model, self.config.model_file)
             logger.info(f"{tag}Model saved to: {self.config.data_root_dir}")
 
             logger.info(f"{tag}Training the model using Adam optimizer")
@@ -94,31 +91,4 @@ class ModelTrainer:
             return epoch_loss, accuracy
         except Exception as e:
             logger.error(f"{tag}Exception occurred during model training: {str(e)}")
-            raise e
-
-    def evaluate(self,model, loader, criterion, device):
-        tag: str = f"{self.class_name}::evaluate::"
-        try:
-            # the model is set to evaluation mode
-            # the weights and biases are not updated
-            model.eval()
-            running_loss = 0.0
-            correct = 0
-            total = 0
-            # we do not need to calculate the gradients
-            # no backpropagation
-            with torch.no_grad():
-                for images, labels in loader:
-                    images, labels = images.to(device), labels.to(device)
-                    outputs = model(images)
-                    loss = criterion(outputs, labels)
-                    running_loss += loss.item() * images.size(0)
-                    _, predicted = outputs.max(1)
-                    total += labels.size(0)
-                    correct += (predicted.eq(labels).sum().item())
-            epoch_loss = running_loss / total
-            accuracy = correct / total
-            return epoch_loss, accuracy
-        except Exception as e:
-            logger.error(f"{tag}Exception occurred during model evaluation: {str(e)}")
             raise e

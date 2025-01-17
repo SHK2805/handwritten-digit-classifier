@@ -114,7 +114,8 @@ class ConfigurationManager:
             data_train_file=Path(config.data_train_file),
             data_val_file=Path(config.data_val_file),
             data_test_file=Path(config.data_test_file),
-            adam_learning_rate=params.learning_rate
+            adam_learning_rate=params.learning_rate,
+            model_file=Path(config.model_file)
         )
 
         return model_trainer_config

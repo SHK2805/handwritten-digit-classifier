@@ -41,3 +41,4 @@ class ModelTrainerConfig:
     data_val_file: Path
     data_test_file: Path
     adam_learning_rate: float
+    model_file: Path
