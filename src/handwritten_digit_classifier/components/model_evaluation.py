@@ -3,6 +3,7 @@ from torch import nn
 
 from src.handwritten_digit_classifier.entity.config_entity import ModelEvaluationConfig
 from src.handwritten_digit_classifier.logger.logger_config import logger
+from src.handwritten_digit_classifier.utils.common import get_model, get_device
 from src.handwritten_digit_classifier.utils.digit_classifier import DigitClassifier
 
 
@@ -28,8 +29,9 @@ class ModelEvaluation:
 
             # load the data and model
             # check if GPU is available
-            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-            model = DigitClassifier().to(device)
+            device = get_device()
+            logger.info(f"{tag}Device: {device}")
+            model = get_model(device)
             model.load_state_dict(torch.load(self.config.model_file, weights_only=True))
             logger.info(f"{tag}Loading the data from files")
             test_data = torch.load(self.config.data_test_file)

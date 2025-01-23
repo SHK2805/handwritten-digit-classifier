@@ -1,10 +1,9 @@
 from pathlib import Path
 
-import cv2
 import torch
 
 from src.handwritten_digit_classifier.logger.logger_config import logger
-from src.handwritten_digit_classifier.utils.common import preprocess_image
+from src.handwritten_digit_classifier.utils.common import get_device, get_model
 from src.handwritten_digit_classifier.utils.digit_classifier import DigitClassifier
 
 
@@ -26,8 +25,9 @@ class PredictionPipeline:
         tag: str = f"{self.class_name}::load_model::"
         # Load the model from the file
         # check if GPU is available
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        model = DigitClassifier().to(device)
+        device = get_device()
+        logger.info(f"{tag}Device: {device}")
+        model = get_model(device)
         model.load_state_dict(torch.load(self.model_file_path))
         model.eval()
         logger.info(f"{tag}Model loaded from file: {self.model_file_path} for device: {device}")

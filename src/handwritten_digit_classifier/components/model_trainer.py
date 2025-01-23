@@ -3,7 +3,9 @@ from torch import nn
 
 from src.handwritten_digit_classifier.entity.config_entity import ModelTrainerConfig
 from src.handwritten_digit_classifier.logger.logger_config import logger
+from src.handwritten_digit_classifier.utils.common import get_model, get_device
 from src.handwritten_digit_classifier.utils.digit_classifier import DigitClassifier
+from src.handwritten_digit_classifier.utils.digit_classifier_cnn import DigitClassifierCNN
 
 
 class ModelTrainer:
@@ -32,10 +34,13 @@ class ModelTrainer:
             learning_rate = self.config.adam_learning_rate
             logger.info(f"{tag}Learning rate: {learning_rate}")
             # get the model
+            #  can be trained using a linear model or a CNN model
+            # the same model should be sued for evaluation (model_evaluation.py) and prediction
             # check if GPU is available
-            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+            device = get_device()
             logger.info(f"{tag}Device: {device}")
-            model = DigitClassifier().to(device)
+            model = get_model(device)
+
             # we have more than one output class so we are using CrossEntropyLoss
             # this will apply softmax to the output layer automatically
             # the output will be a probability distribution over the classes

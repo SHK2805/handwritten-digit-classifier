@@ -1,14 +1,15 @@
 # Handwritten Digit Classifier
 
-# Warm Cool Prediction
+# Handwritten digit classifier
 Application description
 ## Description
-This application is a simple image classifier that predicts the digit on the image trained using MNIST dataset. 
-The application uses opencv to predict the image. 
-The application is built using OpenCV and Flask framework. 
-The flask application runs on http://127.0.0.1:8080
-The user can upload an image to the application, and the application will predict the digit on the image.
-The files will be uploaded to the images folder in the application directory.
+* This application is a simple image classifier that predicts the digit on the image trained using MNIST dataset. 
+* An ANN and a CNN are defined, and we are using the CNN model to predict the image.
+* The application uses opencv to predict the image. 
+* The application is built using OpenCV and Flask framework. 
+* The flask application runs on http://127.0.0.1:8080
+* The user can upload an image to the application, and the application will predict the digit on the image.
+* The files will be uploaded to the images folder in the application directory.
 
 ## Installation
 Run the app from the terminal using the following commands:

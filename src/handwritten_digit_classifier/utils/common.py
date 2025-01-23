@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import cv2
+import torch
 
 import yaml
 from box import ConfigBox
@@ -9,6 +10,8 @@ from ensure import ensure_annotations
 from torchvision import transforms
 
 from src.handwritten_digit_classifier.logger.logger_config import logger
+from src.handwritten_digit_classifier.utils.digit_classifier_cnn import DigitClassifierCNN
+from src.handwritten_digit_classifier.utils.digit_classifier_cnn_sequential import DigitClassifierCNNSequential
 
 
 @ensure_annotations
@@ -100,3 +103,29 @@ def preprocess_image(image):
     preprocessed_image = transform(image)
 
     return preprocessed_image
+
+def get_device():
+    """
+    Get the device
+
+    :return: Device
+    """
+    return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# TODO: Add the model to the config file so this can be passed as a parameter
+def get_model(device="cpu"):
+    """
+    Get the model
+
+    :return: Model
+    """
+    # using a liner model ANN
+    # model = DigitClassifier().to(device)
+    # logger.info(f"{tag}Model: ANN")
+    # using a CNN model
+    # model = DigitClassifierCNN().to(device)
+    # logger.info(f"Model: CNN")
+    # using CNN sequential model
+    model = DigitClassifierCNNSequential().to(device)
+    logger.info(f"Model: CNN Sequential")
+    return model
